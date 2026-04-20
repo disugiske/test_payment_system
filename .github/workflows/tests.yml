@@ -1,0 +1,33 @@
+name: tests
+
+on:
+  push:
+    branches: [master, main]
+  pull_request:
+    branches: [master, main]
+
+jobs:
+  pytest:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v5
+        with:
+          enable-cache: true
+          cache-dependency-glob: |
+            requirements.txt
+            requirements-dev.txt
+
+      - name: Set up Python
+        run: uv python install 3.12
+
+      - name: Create virtualenv and install dependencies
+        run: |
+          uv venv --python 3.12
+          uv pip install -r requirements-dev.txt
+
+      - name: Run pytest
+        run: uv run pytest -v
