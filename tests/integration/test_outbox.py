@@ -5,12 +5,15 @@ import uuid
 from typing import Any
 from unittest.mock import AsyncMock
 
+import pytest
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.database import OutboxEvent, OutboxStatus
 from app.database.queries.outbox import fetch_pending, mark_failed, mark_published
 from app.outbox_publisher import publish_batch
+
+pytestmark = pytest.mark.integration
 
 
 async def _seed_event(
