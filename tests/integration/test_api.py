@@ -3,11 +3,14 @@ from __future__ import annotations
 
 from typing import Any
 
+import pytest
 from httpx import AsyncClient
 from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.database import OutboxEvent, OutboxStatus, Payment, PaymentStatus
+
+pytestmark = pytest.mark.integration
 
 VALID_BODY: dict[str, Any] = {
     "amount": "100.50",

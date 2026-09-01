@@ -1,7 +1,9 @@
-"""Test fixtures.
+"""Fixtures for tests/integration.
 
 Spins up an ephemeral PostgreSQL via testcontainers, applies Alembic
-migrations once per session, and truncates tables between tests.
+migrations once per session, and truncates tables between tests. Scoped to
+this package only — tests/unit needs none of this and must stay
+container-free.
 
 The container is started at conftest import time (BEFORE any ``from app.*``
 import happens in test modules), because ``app.database.db`` builds the

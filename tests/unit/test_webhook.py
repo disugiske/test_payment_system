@@ -9,6 +9,8 @@ from pytest_httpx import HTTPXMock
 
 from app.webhook import WebhookDeliveryError, send_webhook
 
+pytestmark = pytest.mark.unit
+
 URL = "https://example.com/hook"
 PAYLOAD: dict[str, Any] = {"payment_id": "x", "status": "succeeded"}
 

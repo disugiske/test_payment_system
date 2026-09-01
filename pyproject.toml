@@ -6,3 +6,7 @@ testpaths = ["tests"]
 filterwarnings = [
     "ignore::DeprecationWarning",
 ]
+markers = [
+    "unit: fast, no external services",
+    "integration: requires Postgres (testcontainers)",
+]
